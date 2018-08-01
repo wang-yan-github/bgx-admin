@@ -1,0 +1,8 @@
+<div class="grid-btn">
+    <a class="btn btn-info" onclick="updateByPactStatus()">合同审核</a>
+    <a class="btn btn-success" onclick="updateByPactStatusSuccess()">全部合同审核<i class="fa fa-thumbs-up" aria-hidden="true"></i>通过</a>
+    <a class="btn btn-warning" onclick="updateByPactStatusFailure()">全部合同审核<i class="fa fa-thumbs-down" aria-hidden="true"></i>不通过</a>
+    <a class="btn btn-danger" onclick="updateByPactStatusDefault()"><i class="fa fa-history"></i>&nbsp;初始化合同待审核</a>
+</div>
+
+<script src="${request.contextPath}/statics/js/modules/word/audit_pact.js?_${.now?long}"></script>

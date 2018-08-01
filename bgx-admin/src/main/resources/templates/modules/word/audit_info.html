@@ -1,0 +1,8 @@
+<div class="grid-btn">
+    <a class="btn btn-info" onclick="updateByInfoStatus()">信息审核</a>
+    <a class="btn btn-success" onclick="updateByInfoStatusSuccess()">全部信息审核<i class="fa fa-thumbs-up" aria-hidden="true"></i>通过</a>
+    <a class="btn btn-warning" onclick="updateByInfoStatusFailure()">全部信息审核<i class="fa fa-thumbs-down" aria-hidden="true"></i>不通过</a>
+    <a class="btn btn-danger" onclick="updateByInfoStatusDefault()"><i class="fa fa-history"></i>&nbsp;初始化信息待审核</a>
+</div>
+
+<script src="${request.contextPath}/statics/js/modules/word/audit_info.js?_${.now?long}"></script>

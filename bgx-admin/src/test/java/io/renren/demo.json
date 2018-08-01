@@ -1,0 +1,19 @@
+{
+  "type": 1,
+  "qiniuDomain": "http://pa90ayot4.bkt.clouddn.com",
+  "qiniuPrefix": "",
+  "qiniuAccessKey": "-gvEYRo3IWXrHCKd11U7TtSallE3yoABPTt_67fq",
+  "qiniuSecretKey": "FIPLvuzOMMn6jQ-HhLPjtsql8QldSDsSn4Fujp3y",
+  "qiniuBucketName": "bgx-upload",
+  "aliyunDomain": "",
+  "aliyunPrefix": "",
+  "aliyunEndPoint": "",
+  "aliyunAccessKeyId": "",
+  "aliyunAccessKeySecret": "",
+  "aliyunBucketName": "",
+  "qcloudDomain": "",
+  "qcloudPrefix": "",
+  "qcloudSecretId": "",
+  "qcloudSecretKey": "",
+  "qcloudBucketName": ""
+}

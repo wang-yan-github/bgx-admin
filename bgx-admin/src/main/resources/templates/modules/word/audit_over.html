@@ -1,0 +1,8 @@
+<div class="grid-btn">
+    <a class="btn btn-info" onclick="updateByOverStatus()">完工审核</a>
+    <a class="btn btn-success" onclick="updateByOverStatusSuccess()">全部完工审核<i class="fa fa-thumbs-up" aria-hidden="true"></i>通过</a>
+    <a class="btn btn-warning" onclick="updateByOverStatusFailure()">全部完工审核<i class="fa fa-thumbs-down" aria-hidden="true"></i>不通过</a>
+    <a class="btn btn-danger" onclick="updateByOverStatusDefault()"><i class="fa fa-history"></i>&nbsp;初始化完工待审核</a>
+</div>
+
+<script src="${request.contextPath}/statics/js/modules/word/audit_over.js?_${.now?long}"></script>

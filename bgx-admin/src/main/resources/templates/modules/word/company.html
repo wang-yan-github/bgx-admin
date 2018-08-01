@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+		<#include "/header.html">
+</head>
+<body>
+<div id="rrapp" v-cloak>
+    <div v-show="showList">
+        <input type="hidden" id="controllerUrl" value="auditCompany">
+        <#include "/modules/word/audit_info.html">
+        <#include "/modules/word/audit_pact.html">
+        <div class="grid-btn">
+			<#if shiro.hasPermission("word:company:save")>
+            <a class="btn btn-primary" @click="add"><i class="fa fa-plus"></i>&nbsp;新增</a>
+			</#if>
+			<#if shiro.hasPermission("word:company:update")>
+            <a class="btn btn-primary" @click="update"><i class="fa fa-pencil-square-o"></i>&nbsp;修改</a>
+			</#if>
+			<#if shiro.hasPermission("word:company:delete")>
+            <a class="btn btn-primary" @click="del"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
+			</#if>
+        </div>
+        <table id="jqGrid"></table>
+        <div id="jqGridPager"></div>
+    </div>
+
+    <div v-show="!showList" class="panel panel-default">
+        <div class="panel-heading">{{title}}</div>
+        <form class="form-horizontal">
+														                    <div class="form-group">
+                        <div class="col-sm-2 control-label">详细地址 </div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="company.address" placeholder="详细地址 "/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">年龄 </div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="company.age" placeholder="年龄 "/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">企业认证授权书 </div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="company.authorization" placeholder="企业认证授权书 "/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">出生日期 </div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="company.birthday" placeholder="出生日期 "/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">营业执照 </div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="company.bizlicense" placeholder="营业执照 "/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">身份证地址 </div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="company.cardAddress" placeholder="身份证地址 "/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">发包方类型 （1：个人 、2：企业（工程)) </div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="company.companyType" placeholder="发包方类型 （1：个人 、2：企业（工程)) "/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">创建时间 </div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="company.createTime" placeholder="创建时间 "/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">信用等级 </div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="company.creditRating" placeholder="信用等级 "/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">信用积分 </div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="company.creditScore" placeholder="信用积分 "/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">联系人姓名 </div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="company.dutyName" placeholder="联系人姓名 "/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">联系人电话 </div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="company.dutyPhone" placeholder="联系人电话 "/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">头像 </div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="company.headPortrait" placeholder="头像 "/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">邀请码 </div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="company.iCode" placeholder="邀请码 "/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">身份证号 </div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="company.idCard" placeholder="身份证号 "/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">登录时间 </div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="company.loginTime" placeholder="登录时间 "/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">名称 </div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="company.name" placeholder="名称 "/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">开户许可证 </div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="company.openingPermit" placeholder="开户许可证 "/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">组织机构代码 </div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="company.orgcode" placeholder="组织机构代码 "/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">角色完善状态（0：注册未完善 1：完善） </div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="company.perfectStatus" placeholder="角色完善状态（0：注册未完善 1：完善） "/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">所属地区 </div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="company.region" placeholder="所属地区 "/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">税务登记证 </div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="company.registration" placeholder="税务登记证 "/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">备注 </div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="company.remark" placeholder="备注 "/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">性别 </div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="company.sex" placeholder="性别 "/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">缩略名称 </div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="company.shortName" placeholder="缩略名称 "/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">状态 </div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="company.status" placeholder="状态 "/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">法人名称 </div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="company.tdutyName" placeholder="法人名称 "/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">座机号码 </div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="company.tel" placeholder="座机号码 "/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">类型 （1:发包方(用于被预约的时候用)) </div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="company.type" placeholder="类型 （1:发包方(用于被预约的时候用)) "/>
+                        </div>
+                    </div>
+							            <div class="form-group">
+                <div class="col-sm-2 control-label"></div>
+                <input type="button" class="btn btn-primary" @click="saveOrUpdate" value="确定"/>
+                &nbsp;&nbsp;<input type="button" class="btn btn-warning" @click="reload" value="返回"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="${request.contextPath}/statics/js/modules/word/company.js?_${.now?long}"></script>
+</body>
+</html>

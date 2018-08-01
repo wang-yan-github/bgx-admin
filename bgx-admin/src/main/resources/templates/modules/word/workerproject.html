@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <#include "/header.html">
+</head>
+<body>
+<div id="rrapp" v-cloak>
+    <div v-show="showList">
+        <input type="hidden" id="controllerUrl" value="auditWorkerProject">
+        <#include "/modules/word/audit_info.html">
+        <#include "/modules/word/audit_over.html">
+        <div class="grid-btn">
+            <#if shiro.hasPermission("word:workerproject:save")>
+            <a class="btn btn-primary" @click="add"><i class="fa fa-plus"></i>&nbsp;新增</a>
+            </#if>
+            <#if shiro.hasPermission("word:workerproject:update")>
+            <a class="btn btn-primary" @click="update"><i class="fa fa-pencil-square-o"></i>&nbsp;修改</a>
+            </#if>
+            <#if shiro.hasPermission("word:workerproject:delete")>
+            <a class="btn btn-primary" @click="del"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
+            </#if>
+        </div>
+        <table id="jqGrid"></table>
+        <div id="jqGridPager"></div>
+    </div>
+
+    <div v-show="!showList" class="panel panel-default">
+        <div class="panel-heading">{{title}}</div>
+        <form class="form-horizontal">
+            <div class="form-group">
+                <div class="col-sm-2 control-label">项目新增时间</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="workerProject.addTime" placeholder="项目新增时间 "/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">合同id(对应合同表)</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="workerProject.ctId" placeholder="合同id(对应合同表) "/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">项目备案号</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="workerProject.recordNumber" placeholder="项目备案号 "/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">类型（2.劳务公司、3.包工侠、4.劳务）</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="workerProject.type"
+                           placeholder="类型（2.劳务公司、3.包工侠、4.劳务） "/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">推劳务（1是，0否）</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="workerProject.wIsPushWorker"
+                           placeholder="推劳务（1是，0否） "/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">发包方项目id</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="workerProject.wProjectId" placeholder="发包方项目id "/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">包工侠、劳务、劳务公司项目状态</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="workerProject.wStatus"
+                           placeholder="包工侠、劳务、劳务公司项目状态 "/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">包工侠、劳务、劳务公司id</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="workerProject.wWorkerId"
+                           placeholder="包工侠、劳务、劳务公司id "/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">包工侠项目id</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="workerProject.wWorkerProjectId"
+                           placeholder="包工侠项目id "/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">劳务公司项目id</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="workerProject.wsProjectId"
+                           placeholder="劳务公司项目id "/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label"></div>
+                <input type="button" class="btn btn-primary" @click="saveOrUpdate" value="确定"/>
+                &nbsp;&nbsp;<input type="button" class="btn btn-warning" @click="reload" value="返回"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="${request.contextPath}/statics/js/modules/word/workerproject.js?_${.now?long}"></script>
+</body>
+</html>

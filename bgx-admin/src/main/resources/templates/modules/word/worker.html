@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>劳务信息</title>
+    <#include "/header.html">
+</head>
+<body>
+<div id="rrapp" v-cloak>
+    <div v-show="showList">
+        <div class="grid-btn">
+            <input type="hidden" id="controllerUrl" value="auditWorker">
+            <#include "/modules/word/audit_info.html">
+            <#include "/modules/word/audit_pact.html">
+            <#if shiro.hasPermission("word:worker:save")>
+            <a class="btn btn-primary" @click="add"><i class="fa fa-plus"></i>&nbsp;新增</a>
+            </#if>
+            <#if shiro.hasPermission("word:worker:update")>
+            <a class="btn btn-primary" @click="update"><i class="fa fa-pencil-square-o"></i>&nbsp;修改</a>
+            </#if>
+            <#if shiro.hasPermission("word:worker:delete")>
+            <a class="btn btn-primary" @click="del"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
+            </#if>
+        </div>
+        <table id="jqGrid"></table>
+        <div id="jqGridPager"></div>
+    </div>
+
+    <div v-show="!showList" class="panel panel-default">
+        <div class="panel-heading">{{title}}</div>
+        <form class="form-horizontal">
+            <div class="form-group">
+                <div class="col-sm-2 control-label">详细地址</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="worker.address" placeholder="详细地址 "/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">年龄</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="worker.age" placeholder="年龄 "/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">出生日期</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="worker.birthday" placeholder="出生日期 "/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">身份证地址</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="worker.cardAddress" placeholder="身份证地址 "/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">资质证书</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="worker.certificate" placeholder="资质证书 "/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">劳务所属公司</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="worker.company" placeholder="劳务所属公司 "/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">施工工种</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="worker.consType" placeholder="施工工种 "/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">创建时间</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="worker.createTime" placeholder="创建时间 "/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">信用等级</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="worker.creditRating" placeholder="信用等级 "/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">信用积分</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="worker.creditScore" placeholder="信用积分 "/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">联系人姓名</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="worker.dutyName" placeholder="联系人姓名 "/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">联系人电话</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="worker.dutyPhone" placeholder="联系人电话 "/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">头像</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="worker.headPortrait" placeholder="头像 "/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">邀请码</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="worker.iCode" placeholder="邀请码 "/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">身份证号</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="worker.idCard" placeholder="身份证号 "/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">工程相册</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="worker.imgs" placeholder="工程相册 "/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">自我介绍</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="worker.introduction" placeholder="自我介绍 "/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">登录时间</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="worker.loginTime" placeholder="登录时间 "/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">最高薪资</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="worker.maximum" placeholder="最高薪资 "/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">最低薪资</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="worker.minimum" placeholder="最低薪资 "/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">名称</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="worker.name" placeholder="名称 "/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">所属职位</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="worker.position" placeholder="所属职位 "/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">所属地区</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="worker.region" placeholder="所属地区 "/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">备注</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="worker.remark" placeholder="备注 "/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">性别</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="worker.sex" placeholder="性别 "/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">状态</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="worker.status" placeholder="状态 "/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">技术类型</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="worker.technicalType" placeholder="技术类型 "/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">类型 （1：包工侠 、2：劳务）</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="worker.type" placeholder="类型 （1：包工侠 、2：劳务） "/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">可工作地</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="worker.workAddress" placeholder="可工作地 "/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">从业年限</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="worker.workTime" placeholder="从业年限 "/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label"></div>
+                <input type="button" class="btn btn-primary" @click="saveOrUpdate" value="确定"/>
+                &nbsp;&nbsp;<input type="button" class="btn btn-warning" @click="reload" value="返回"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="${request.contextPath}/statics/js/modules/word/worker.js?_${.now?long}"></script>
+</body>
+</html>

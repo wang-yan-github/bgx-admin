@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="io.renren.modules.word.dao.WorkerDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="io.renren.modules.word.entity.WorkerEntity" id="workerMap">
+        <result property="wId" column="w_id"/>
+        <result property="address" column="address"/>
+        <result property="age" column="age"/>
+        <result property="birthday" column="birthday"/>
+        <result property="cardAddress" column="card_address"/>
+        <result property="certificate" column="certificate"/>
+        <result property="company" column="company"/>
+        <result property="consType" column="cons_type"/>
+        <result property="createTime" column="create_time"/>
+        <result property="creditRating" column="credit_rating"/>
+        <result property="creditScore" column="credit_score"/>
+        <result property="dutyName" column="duty_name"/>
+        <result property="dutyPhone" column="duty_phone"/>
+        <result property="headPortrait" column="head_portrait"/>
+        <result property="iCode" column="i_code"/>
+        <result property="idCard" column="id_card"/>
+        <result property="imgs" column="imgs"/>
+        <result property="introduction" column="introduction"/>
+        <result property="loginTime" column="login_time"/>
+        <result property="maximum" column="maximum"/>
+        <result property="minimum" column="minimum"/>
+        <result property="name" column="name"/>
+        <result property="position" column="position"/>
+        <result property="region" column="region"/>
+        <result property="remark" column="remark"/>
+        <result property="sex" column="sex"/>
+        <result property="status" column="status"/>
+        <result property="technicalType" column="technical_type"/>
+        <result property="type" column="type"/>
+        <result property="workAddress" column="work_address"/>
+        <result property="workTime" column="work_time"/>
+    </resultMap>
+
+
+</mapper>
