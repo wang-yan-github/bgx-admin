@@ -1,7 +1,12 @@
 
 FROM hub.c.163.com/wuxukun/maven-aliyun:3-jdk-8
 
-COPY ./ /tmp/build/src
+ADD pom.xml /tmp/build/
+
+ADD bgx-common /tmp/build/bgx-common
+
+ADD bgx-admin /tmp/build/bgx-admin
+
         #构建应用
 RUN cd /tmp/build && mvn clean package \
         #拷贝编译结果到指定目录
